@@ -1,0 +1,22 @@
+{
+  "name": "saulbot",
+  "version": "1.0.0",
+  "description": "bot to mess with will",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WahJianLin/SaulBot.git"
+  },
+  "author": "tao and jian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WahJianLin/SaulBot/issues"
+  },
+  "homepage": "https://github.com/WahJianLin/SaulBot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
