@@ -14,10 +14,24 @@ module.exports.run = async (bot, message, args) => {
   // Jail em
   const afkChan = message.guild.afkChannel;
 
-  // message.channel.send(afkChan.name);
 
-  await rMember.setVoiceChannel(afkChan);
-  return message.react('👌');
+  function jail(){
+    if(rMember.voiceChannel.id != afkChan){
+      rMember.setVoiceChannel(afkChan);
+      // message.channel.send('👌');
+    }
+  };
+
+  function stopJail(){
+    clearInterval(myTimer);
+    return message.channel.send("They've done their time.");
+  };
+
+  var myTimer = setInterval(jail, 10*1000);
+  setTimeout(stopJail, 1*60*1000);
+
+  // message.channel.send(afkChan.name);
+  // setTimeout(setInterval(jail(), 10*1000), 1*60*1000);
 
   // try{
   //   await member.setVoiceChannel(afkChan);
