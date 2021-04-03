@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WahJianLin/SaulBot.git"
+    "url": "git+https://github.com/WahJianLin/WalnutEnforcer.git"
   },
   "author": "tao and jian",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WahJianLin/SaulBot/issues"
+    "url": "https://github.com/WahJianLin/WalnutEnforcer/issues"
   },
-  "homepage": "https://github.com/WahJianLin/SaulBot#readme",
+  "homepage": "https://github.com/WahJianLin/WalnutEnforcer#readme",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^12.5.2"
   }
 }
