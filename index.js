@@ -24,6 +24,11 @@ bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
 });
 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Our app is running on port ${PORT}`);
+});
+
 bot.on("message", async (message) => {
   if (message.author.bot) return;
   if (message.channel.type == "dm") return;
