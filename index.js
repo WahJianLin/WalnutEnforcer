@@ -24,9 +24,9 @@ bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Our app is running on port ${PORT}`);
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(port);
 });
 
 bot.on("message", async (message) => {
