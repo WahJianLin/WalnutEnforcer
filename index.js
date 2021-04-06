@@ -24,11 +24,6 @@ bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
 });
 
-const port = process.env.PORT || 8080;
-bot.listen(port, () => {
-  console.log(port);
-});
-
 bot.on("message", async (message) => {
   if (message.author.bot) return;
   if (message.channel.type == "dm") return;
