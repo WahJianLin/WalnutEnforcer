@@ -25,7 +25,7 @@ bot.on("ready", async () => {
 });
 
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
+bot.listen(port, () => {
   console.log(port);
 });
 
