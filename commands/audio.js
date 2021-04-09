@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports.run = async (bot, message, args) => {
   //list of audio files
-  let audioArr = ["pikachu", "test"];
+  let audioArr = ["beast", "pikachu", "test"];
 
   //gets caller's channel and checks if user is in channel
   let callerChan = message.member.voice.channel;

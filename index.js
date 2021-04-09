@@ -40,5 +40,5 @@ bot.on("message", async (message) => {
   //     return message.channel.send("Hi");
   // }
 });
-//bot.login(botconfig.token);
-bot.login(process.env.WALNUT_TOKEN);
+bot.login(botconfig.token);
+//bot.login(process.env.WALNUT_TOKEN);
