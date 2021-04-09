@@ -4,7 +4,7 @@
   "description": "bot to mess with will",
   "main": "index.js",
   "engines": {
-    "node": "10.x"
+    "node": "12.16.0"
   },
   "scripts": {
     "start": "node index.js",
