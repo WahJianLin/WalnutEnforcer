@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/WahJianLin/WalnutEnforcer#readme",
   "dependencies": {
-    "discord.js": "^12.5.2"
+    "@discordjs/opus": "github:discordjs/opus",
+    "discord.js": "^12.5.2",
+    "ffmpeg-static": "^4.3.0"
   }
 }
