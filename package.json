@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/WahJianLin/WalnutEnforcer#readme",
   "dependencies": {
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "ffmpeg-static": "^4.3.0",
+    "node-opus": "^0.3.3"
   }
 }
