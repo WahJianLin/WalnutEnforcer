@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports.run = async (bot, message, args) => {
   //list of audio files
-  let audioArr = ["beast", "crazy", "dcrazy", "pikachu", "test"];
+  let audioArr = ["beast", "crazy", "dcrazy", "joker", "pikachu", "test"];
 
   //gets caller's channel and checks if user is in channel
   let callerChan = message.member.voice.channel;
@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
   const dispatcher = connection.play(
     path.join(__dirname, "..", "audio", msg[1].toLowerCase() + ".mp3")
   );
-  setTimeout(chanDisconnect, 5 * 1000);
+  setTimeout(chanDisconnect, 6.5 * 1000);
 
   return;
 
