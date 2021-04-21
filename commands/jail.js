@@ -2,13 +2,13 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   //get role ids and checks if typer has roles
-  let targetRole = message.guild.roles.cache.find(
+  let enforcerRole = message.guild.roles.cache.find(
     (role) => role.name === "Enforcer"
   );
   let corruptRole = message.guild.roles.cache.find(
     (role) => role.name === "Corrupt Enforcer"
   );
-  let hasTargetRole = message.member.roles.cache.has(targetRole.id);
+  let hasEnforcerRole = message.member.roles.cache.has(enforcerRole.id);
   let hasCorruptRole = message.member.roles.cache.has(corruptRole.id);
 
   //finds target user and if they are corrupt
@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
   }
 
   //checks if user is an enforcer
-  if (!hasTargetRole && !hasCorruptRole) {
+  if (!hasEnforcerRole && !hasCorruptRole) {
     return message.channel.send("You are not an Enforcer");
   }
 

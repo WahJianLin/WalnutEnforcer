@@ -2,9 +2,14 @@ const Discord = require("discord.js");
 const path = require("path");
 
 module.exports.run = async (bot, message, args) => {
+  let enforcerRole = message.guild.roles.cache.find(
+    (role) => role.name === "Enforcer"
+  );
   let corruptRole = message.guild.roles.cache.find(
     (role) => role.name === "Corrupt Enforcer"
   );
+
+  let hasEnforcerRole = message.member.roles.cache.has(enforcerRole.id);
   let hasCorruptRole = message.member.roles.cache.has(corruptRole.id);
 
   //finds target user and if they are corrupt
@@ -13,14 +18,14 @@ module.exports.run = async (bot, message, args) => {
     (role) => role.name === "Corrupt Enforcer"
   );
 
+  //checks if user is an enforcer
+  if (!hasEnforcerRole && !hasCorruptRole) {
+    return message.channel.send("You are not an Enforcer");
+  }
+
   //checks if target user is corrupt
   if (corruptTargetRole == corruptRole.id) {
     return message.channel.send("No");
-  }
-
-  //checks if user is an enforcer
-  if (!hasCorruptRole) {
-    return message.channel.send("You are not an Enforcer");
   }
 
   //finds if the target voice channel exist
