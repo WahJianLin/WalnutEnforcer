@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const path = require("path");
 
 module.exports.run = async (bot, message, args) => {
-  //list of audio files
+  //list of audio files 
   let audioArr = ["random", "beast", "crazy", "dcrazy", "pikachu", "yorker"];
 
   //gets caller's channel and checks if user is in channel
