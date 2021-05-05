@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const path = require("path");
 
 module.exports.run = async (bot, message, args) => {
-  //list of audio files 
+  //list of audio files
   let audioArr = ["random", "beast", "crazy", "dcrazy", "pikachu", "yorker"];
 
   //gets caller's channel and checks if user is in channel
@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     return;
   }
   else if (audioArr.indexOf(msg[1]) == 0) {
-    let r = Math.floor((Math.random() * audioArr.length) + 1);;
+    let r = Math.floor((Math.random() * (audioArr.length-1)) + 1);;
     msg[1] = audioArr[r];
   }
 
