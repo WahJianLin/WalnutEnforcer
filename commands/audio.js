@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports.run = async (bot, message, args) => {
   //list of audio files
-  let audioArr = ["beast", "crazy", "dcrazy", "pikachu", "test", "yorker"];
+  let audioArr = ["random", "beast", "crazy", "dcrazy", "pikachu", "yorker"];
 
   //gets caller's channel and checks if user is in channel
   let callerChan = message.member.voice.channel;
@@ -17,6 +17,10 @@ module.exports.run = async (bot, message, args) => {
   if (audioArr.indexOf(msg[1]) == -1) {
     help();
     return;
+  }
+  else if (audioArr.indexOf(msg[1]) == 0) {
+    let r = Math.floor((Math.random() * audioArr.length) + 1);;
+    msg[1] = audioArr[r];
   }
 
   //makes bot join caller's channel and play audio. Disconnects after 10 seconds
