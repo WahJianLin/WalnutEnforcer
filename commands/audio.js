@@ -11,19 +11,20 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("User is not in a voice channel");
   }
 
-  //checks if user hasa valid audio request
+  //checks if user has a valid audio request
   let msg = message.toString();
   msg = msg.split(" ");
   if (audioArr.indexOf(msg[1]) == -1) {
     help();
     return;
   }
+  //checks if user puts in the random audio command
   else if (audioArr.indexOf(msg[1]) == 0) {
     let r = Math.floor((Math.random() * (audioArr.length-1)) + 1);;
     msg[1] = audioArr[r];
   }
 
-  //makes bot join caller's channel and play audio. Disconnects after 10 seconds
+  //makes bot join caller's channel and play audio. Disconnects after 6.5 seconds
   message.channel.send("Playing " + msg[1]);
   const connection = await callerChan.join();
   const dispatcher = connection.play(
@@ -37,6 +38,7 @@ module.exports.run = async (bot, message, args) => {
     callerChan.leave();
   }
 
+  //audio help function
   function help() {
     let str =
       "To play audio please type in '!audio {target clip}'\n\nTarget Clips:";
