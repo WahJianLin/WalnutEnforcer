@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
   //checks if user has a valid audio request
   let msg = message.toString();
   msg = msg.split(" ");
-  if (audioArr.indexOf(msg[1]) == -1) {
+  if (audioArr.indexOf(msg[1].toLowerCase()) == -1) {
     help();
     return;
   }
