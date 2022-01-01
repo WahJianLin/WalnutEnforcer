@@ -1,29 +1,21 @@
-const Discord = require("discord.js");
+const userDetailUtil = require("../util/userDetailUtil");
 
 module.exports.run = async (bot, message, args) => {
-  //get role ids and checks if typer has roles
-  let enforcerRole = message.guild.roles.cache.find(
-    (role) => role.name === "Enforcer"
+  const callerUserDetail = userDetailUtil.getUserDetails(
+    message,
+    message.member
   );
-  let corruptRole = message.guild.roles.cache.find(
-    (role) => role.name === "Corrupt Enforcer"
-  );
-  let hasEnforcerRole = message.member.roles.cache.has(enforcerRole.id);
-  let hasCorruptRole = message.member.roles.cache.has(corruptRole.id);
 
-  //finds target user and if they are corrupt
   let targetUser = message.guild.member(message.mentions.users.first());
-  let corruptTargetRole = targetUser.roles.cache.find(
-    (role) => role.name === "Corrupt Enforcer"
-  );
+  let targetUserDetail = userDetailUtil.getUserDetails(message, targetUser);
 
   //checks if target user is corrupt
-  if (corruptTargetRole == corruptRole.id) {
+  if (targetUserDetail.corruptRole == true) {
     return message.channel.send("No");
   }
 
   //checks if user is an enforcer
-  if (!hasEnforcerRole && !hasCorruptRole) {
+  if (!callerUserDetail.enforcerRole && !callerUserDetail.corruptRole) {
     return message.channel.send("You are not an Enforcer");
   }
 
@@ -34,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
 
   //gets channels and timers
   const afkChan = message.guild.afkChannel;
-  let ogChan = targetUser.voice.channel;
+  let ogChan = targetUserDetail.channel;
   var timer;
 
   startJail();
@@ -44,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
     targetUser.voice.setChannel(afkChan);
     message.channel.send("Go to jail you criminal fiend");
     jail();
-    setTimeout(stopJail, 24 * 1000);
+    setTimeout(stopJail, 2 * 1000);
   }
 
   //starts repeater to put user in afk if they are not in afk channel
