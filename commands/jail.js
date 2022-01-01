@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
     targetUser.voice.setChannel(afkChan);
     message.channel.send("Go to jail you criminal fiend");
     jail();
-    setTimeout(stopJail, 2 * 1000);
+    setTimeout(stopJail, 24 * 1000);
   }
 
   //starts repeater to put user in afk if they are not in afk channel
