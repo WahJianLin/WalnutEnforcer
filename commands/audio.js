@@ -1,16 +1,18 @@
-const Discord = require("discord.js");
 const path = require("path");
+const userDetailUtil = require("../util/userDetailUtil");
+const audioUtil = require("../util/audioUtil");
 
 module.exports.run = async (bot, message, args) => {
+  const callerUserDetail = userDetailUtil.getUserDetails(
+    message,
+    message.member
+  );
   //list of audio files
   let audioArr = ["random", "beast", "crazy", "dcrazy", "pikachu", "yorker"];
-
   //gets caller's channel and checks if user is in channel
-  let callerChan = message.member.voice.channel;
-  if (!callerChan) {
+  if (!callerUserDetail.channel) {
     return message.channel.send("User is not in a voice channel");
   }
-
   //checks if user has a valid audio request
   let msg = message.toString();
   msg = msg.split(" ");
@@ -20,23 +22,14 @@ module.exports.run = async (bot, message, args) => {
   }
   //checks if user puts in the random audio command
   else if (audioArr.indexOf(msg[1]) == 0) {
-    let r = Math.floor((Math.random() * (audioArr.length-1)) + 1);;
+    let r = Math.floor(Math.random() * (audioArr.length - 1) + 1);
     msg[1] = audioArr[r];
   }
 
   //makes bot join caller's channel and play audio. Disconnects after 6.5 seconds
   message.channel.send("Playing " + msg[1]);
-  const connection = await callerChan.join();
-  const dispatcher = connection.play(
-    path.join(__dirname, "..", "audio", msg[1].toLowerCase() + ".mp3")
-  );
-  setTimeout(chanDisconnect, 6.5 * 1000);
-
+  audioUtil.playAudio(callerUserDetail.channel, msg[1].toLowerCase());
   return;
-
-  function chanDisconnect() {
-    callerChan.leave();
-  }
 
   //audio help function
   function help() {
