@@ -3,35 +3,48 @@ const userDetailUtil = require("../util/userDetailUtil");
 const audioUtil = require("../util/audioUtil");
 
 module.exports.run = async (bot, message, args) => {
+  //get caller user details
   const callerUserDetail = userDetailUtil.getUserDetails(
     message,
     message.member
   );
   //list of audio files
-  let audioArr = ["random", "beast", "crazy", "dcrazy", "pikachu", "yorker"];
-  //gets caller's channel and checks if user is in channel
+  let audioArr = [
+    "random",
+    "beast",
+    "crazy",
+    "dcrazy",
+    "pikachu",
+    "waaa",
+    "yorker",
+  ];
+  //gets caller user's channel and checks if user is in channel
   if (!callerUserDetail.channel) {
     return message.channel.send("User is not in a voice channel");
   }
-  //checks if user has a valid audio request
+  //checks if caller user has a valid audio request
   let msg = message.toString();
   msg = msg.split(" ");
-  if (audioArr.indexOf(msg[1].toLowerCase()) == -1) {
+  if (
+    msg[1] == undefined ||
+    msg1[1] == null ||
+    audioArr.indexOf(msg[1].toLowerCase()) == -1
+  ) {
     help();
     return;
   }
-  //checks if user puts in the random audio command
+  //checks if caller user puts in the random audio command
   else if (audioArr.indexOf(msg[1]) == 0) {
     let r = Math.floor(Math.random() * (audioArr.length - 1) + 1);
     msg[1] = audioArr[r];
   }
 
-  //makes bot join caller's channel and play audio. Disconnects after 6.5 seconds
+  //makes bot join caller user's channel and play audio. Disconnects bot when complete
   message.channel.send("Playing " + msg[1]);
   audioUtil.playAudio(callerUserDetail.channel, msg[1].toLowerCase());
   return;
 
-  //audio help function
+  //tells caller user the correct audio files
   function help() {
     let str =
       "To play audio please type in '!audio {target clip}'\n\nTarget Clips:";

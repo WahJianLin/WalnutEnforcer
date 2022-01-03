@@ -1,12 +1,17 @@
 const userDetailUtil = require("../util/userDetailUtil");
 
 module.exports.run = async (bot, message, args) => {
+  //gets caller user details
   const callerUserDetail = userDetailUtil.getUserDetails(
     message,
     message.member
   );
 
+  //gets target user details
   let targetUser = message.guild.member(message.mentions.users.first());
+  if (targetUser == null) {
+    return message.channel.send("User does not exist");
+  }
   let targetUserDetail = userDetailUtil.getUserDetails(message, targetUser);
 
   //checks if target user is corrupt
@@ -14,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("No");
   }
 
-  //checks if user is an enforcer
+  //checks if caller user is an enforcer
   if (!callerUserDetail.enforcerRole && !callerUserDetail.corruptRole) {
     return message.channel.send("You are not an Enforcer");
   }

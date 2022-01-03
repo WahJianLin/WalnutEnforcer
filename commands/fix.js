@@ -3,12 +3,17 @@ const userDetailUtil = require("../util/userDetailUtil");
 const audioUtil = require("../util/audioUtil");
 
 module.exports.run = async (bot, message, args) => {
+  //gets caller user details
   const callerUserDetail = userDetailUtil.getUserDetails(
     message,
     message.member
   );
 
+  //gets target user details
   let targetUser = message.guild.member(message.mentions.users.first());
+  if (targetUser == null) {
+    return message.channel.send("User does not exist");
+  }
   let targetUserDetail = userDetailUtil.getUserDetails(message, targetUser);
 
   //checks if target user is corrupt
@@ -16,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("No");
   }
 
-  //checks if user is an enforcer
+  //checks if caller user is an enforcer
   if (!callerUserDetail.enforcerRole && !callerUserDetail.corruptRole) {
     return message.channel.send("You are not an Enforcer");
   }
@@ -34,13 +39,13 @@ module.exports.run = async (bot, message, args) => {
   //makes target user and bot join a channel and play audio. Then disconnects and returns users.
   let ogChan = targetUser.voice.channel;
   targetUser.voice.setChannel(targetChan);
-
   setTimeout(function () {
     audioUtil.playAudio(targetChan, "joker");
   }, 1.1 * 1000);
   setTimeout(returnUser, 4.5 * 1000);
   return;
 
+  //returns target user back to original channel
   function returnUser() {
     if (!targetUser.voice.channel) {
       message.channel.send("The voice of will was too powerful");
