@@ -35,4 +35,4 @@ bot.on("message", async (message) => {
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(bot, message, args);
 });
-bot.login("OTI2NjQyNDMyNzMxMzgxODEw.Yc-pBA.hwiTU7p9fv37g2r7GRUWf2-3eqo");
+bot.login(process.env.WALNUT_TOKEN);
