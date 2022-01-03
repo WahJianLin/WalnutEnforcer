@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
   msg = msg.split(" ");
   if (
     msg[1] == undefined ||
-    msg1[1] == null ||
+    msg[1] == null ||
     audioArr.indexOf(msg[1].toLowerCase()) == -1
   ) {
     help();
