@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
   let chanArr = [];
   const ogChan = targetUserDetail.channel;
   var timer;
-  
+
   //get ping pong channels
   chanArr[0] = message.guild.channels.cache.find(
     (channel) => channel.name === "Ping"
@@ -47,7 +47,7 @@ module.exports.run = async (bot, message, args) => {
 
   //wraps up yeet functions
   function startYeet() {
-    message.channel.send("Begin the Yeeeeeeeeeeeeeeet")
+    message.channel.send("Begin the Yeeeeeeeeeeeeeeet");
     yeet();
     setTimeout(stopYeet, 10 * 1000);
   }
@@ -55,10 +55,8 @@ module.exports.run = async (bot, message, args) => {
   //starts repeater to move user to ping pong channels
   function yeet() {
     timer = setInterval(function () {
-      if(!targetUser.voice.channel){
-        message.channel.send("Yeet?")
-      }
-      else if (pos == 0) {
+      if (!targetUser.voice.channel) {
+      } else if (pos == 0) {
         targetUser.voice.setChannel(chanArr[1]);
         pos = 1;
       } else {
