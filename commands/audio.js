@@ -15,6 +15,7 @@ module.exports.run = async (bot, message, args) => {
     "crazy",
     "dcrazy",
     "pikachu",
+    "roll",
     "waaa",
     "yorker",
   ];
